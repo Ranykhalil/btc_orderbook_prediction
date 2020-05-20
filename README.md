@@ -1,5 +1,6 @@
 # Introduction
 This study is aimed at cryptocurrency price prediction using market bid/ask pressures within orderbook data collected from Kaiku.
+
 Repository navigation:
 
   Data_Gathering_API: Downloading Data from API using key provided by Kaiku
@@ -36,10 +37,15 @@ Using this data the prediction of the price movement can be monitored and predic
 # Data Understanding
 The structure of the dataframe is as follows:
 date	type	price	amount
+
 0	1567296016662	b	9600.85	0.058399
+
 1	1567296016662	b	9600.01	0.225000
+
 2	1567296016662	b	9600.00	0.104123
+
 3	1567296016662	b	9600.00	0.021774
+
 4	1567296016662	b	9600.00	1.000000
 
 
