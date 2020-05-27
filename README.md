@@ -23,6 +23,8 @@ Repository navigation:
 
 **Guided walkthrough:**
 
+When trading any asset one should be aware of the general sentiment around that asset; that is generally obtainable through news outlets as well as some further investigation into the general market and dependant factors. After coming to the decision on the expected performance a trader can then implement some technical analysis (short term/long term analysis on the chart) to determine whether to buy/sell and at what price he would be looking to buy/sell. People don’t generally wait by the computer to initiate their ideal trade, but rather put in limit orders that help automate this step ensuring you buy or sell at your chosen price even if you are not behind the computer. Of course for your computer to execute that trade on your behalf it needs to be pre-funded and that amount held in the case this trade executes. All the limit orders placed by all the traders on the market are stored in what is called an orderbook. In other terms all trader’s sentiment around the asset are now digitalised in numeric form and include the following key features: Buy(bid) or Sell(ask)? How much of the asset (amount)? At what price level (price)? 
+
 When trading on a specific exchange there exists two differnet orders a trader can set:
 
 1- **Market Orders:** These are orders that are settled immediately at the current market price.
