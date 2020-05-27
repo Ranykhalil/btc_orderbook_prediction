@@ -1,6 +1,10 @@
 # Introduction
 This study is aimed at cryptocurrency price prediction using market bid/ask pressures within orderbook data collected from Kaiku.
 
+The correct prediction of the price change in future timestamps is especially important to traders as it gives an idea of the price movement and whether is could be used to initiate a profitable trade.
+
+The use of such a predictive system could easily be wrapped within a trading bot for automated use, if able of consistently producing reliable predictions.
+
 Repository navigation:
 
     Data_Gathering_API: Downloading Data from API using key provided by Kaiku
@@ -57,6 +61,23 @@ For reproduction: It would be necessary to obtain a similar format orderbook or 
 # Data Preperation
 Data preperation mainly revolved around the rebinning of data into price bins to emphasis the interest in high pressure price levels. Indicating a general market interest at that level.
 
+Because the price of buying something is what another person is willing to sell at, the price of buying the asset is essentially the lowest ask order in the orderbook. And the price at which you would sell an asset likely depends on the price someone is willing to buy at, essentially the highest bid in the orderbook.
+
+The difference between them is called the spread. In other terms it is the difference between the lowest price to sell something and highest price you could buy it at . In practice if you were to sell X amounts of an asset and then buy the same X amount back you will be paying the spread.
+
+The data we are looking through is the orderbook with data of 10% above and below the price, 
+If the entire orderbook is df the data we have available is: df.loc[math.abs((df[‘price’] - current price )/current_price)<= 10/100]
+
+and the main aim is to figure out what price levels a price could move to based on the bid/ask pressure.
+Data after binning:
+
+    -Columns 0-999: bins of bid data (below the highest bid): 10% — 9.99% — 9.98% — ….. — 0.02% — 0.01% 
+
+    -Columns 1000-1999: bins of ask data (above the lowest ask): 0.01% — 0.02% — ….. — 9.98% — 9.99% — 10%
+
+The actual values in the columns is the sum of the amounts (15BTC etc..) located within X% (refer to above) of the current price.
+
+The amounts in these bins either below or above the price is what constitutes these bid/ask pressures. A lot of people feel it is best to sell at this level —> they don’t think it’ll pass that price level —> they would rather get rid of it and cash out than keep holding onto it —> price will go down.
 
 # Modelling
 Since the data was not in consistent time intervals modelling included running logistic to ask as baseline to whether the data could be looked at as discrete values rather than continuous.
@@ -72,13 +93,13 @@ The buying and selling pressure as time moves indicates the level of interest wi
 This change of interest is directly translated to a change in price. 
 The orderbook containing all this data should be capable of identifying the movement of the price as well as the price levels if prices were to move.
 
-     -The logistic regression with no thresholding model was seen to be more or less incapable of accurately predicting the return expected in one time step as the accuracy of the model returned a 0.54 accuracy value
+     -The logistic regression model was run without thresholding on a binary price change of either positive/negative. It was seen to be incapable of accurately predicting a one step forward price change as the accuracy of the model returned 0.54
     
-    -The Linear Dense neural network model that was run afterwards included three classfication outputs 0,1,2 : sell, hold, buy. The model training showed a very high accuracy of 0.96 when run at 100 epochs which seemed to be overfitting the data, since the validation accuracy was onlt 0.7 . Possible solutions include lower epoch number for a less over-fit model.
+-The Linear Dense neural network model that was run afterwards included three classfication outputs 0,1,2 : sell, hold, buy. The model **training showed a very high accuracy of 0.96** when run at 100 epochs which seemed to be overfitting the data, since the **validation accuracy was 0.7** . Possible solutions include lower epoch number for a less over-fit model.
     
-    -Finally the last model attempted which is the model that was chosen to be the best performing was the LSTM neural network model that returned a validation score of 0.805 which was higher than the training score of 0.762, the model was run using a lower epoch number to prevent over-fitting and was consequently run on the test values
+ -Finally the last model attempted which is the model that was chosen to be the best performing was the LSTM neural network model that returned a **validation score of 0.805** which was higher than the **training score of 0.762**, the model was run using a lower epoch number to prevent over-fitting and was consequently run on the test values.
    
-   -The final testing of the model returned an accuracy equal to that of the validation which is always a good sign to see. 
+   -The final testing of the model returned a **test score of 0.805** which is equal to that of the validation which is always a good sign to see. 
 
 # Other
 
