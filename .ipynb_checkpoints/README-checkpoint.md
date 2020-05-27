@@ -1,14 +1,20 @@
 # Introduction
 This study is aimed at cryptocurrency price prediction using market bid/ask pressures within orderbook data collected from Kaiku.
+
 Repository navigation:
 
-  Data_Gathering_API: Downloading Data from API using key provided by Kaiku
+    Data_Gathering_API: Downloading Data from API using key provided by Kaiku
   
-  Data_Undrestanding_Preperation: A run through the data and some preperation and cleaning.
+    Data_Undrestanding_Preperation: A run through the data and some preperation and cleaning.
+    
+    Modelling_Evaluation: Running baseline model as well as other models with conclusion on all models
+    
+    other models (redirected to seperate notebooks):
+    
+        DENSE: Dense neural network modelling
+
+        LSTM: Long Short Term Memory modelling
   
-  Modelling_Evaluation: Running baseline model and other models
-  
-For reproduction: It would be necessary to obtain a similar format orderbook or rearrange it to the format above
 # Business Understanding
 
 **Guided walkthrough:**
@@ -36,10 +42,15 @@ Using this data the prediction of the price movement can be monitored and predic
 # Data Understanding
 The structure of the dataframe is as follows:
 date	type	price	amount
+
 0	1567296016662	b	9600.85	0.058399
+
 1	1567296016662	b	9600.01	0.225000
+
 2	1567296016662	b	9600.00	0.104123
+
 3	1567296016662	b	9600.00	0.021774
+
 4	1567296016662	b	9600.00	1.000000
 
 
@@ -47,17 +58,18 @@ The sample csv contains snapshots of the order book at different timestamps foun
 
 The timestamp is in unix format with a millisecond accuracy.
 
+For reproduction: It would be necessary to obtain a similar format orderbook or rearrange it to the format above
+
 # Data Preperation
 Data preperation mainly revolved around the rebinning of data into price bins to emphasis the interest in high pressure price levels. Indicating a general market interest at that level.
+
 
 # Modelling
 Since the data was not in consistent time intervals modelling included running logistic to ask as baseline to whether the data could be looked at as discrete values rather than continuous.
 
--Dense Neural Network: A dense layered model yielded a validation accuracy of 0.7
+-Dense Neural Network: A dense layered model yielded a validation accuracy of 0.705 which was lower than the training accuracy of 0.9687 indicating an over-fit model.
 
--Long Short Term Memory: Running the LSTM model yielded a validation accuracy of 0.8
-
-----Compare with graphs----
+-Long Short Term Memory: Running the LSTM model yielded a validation accuracy of 0.8055 which was higher than the training accuracy of 0.7624 solving the over-fitting problem seen above.
 
 
 # Evaluation
@@ -66,14 +78,23 @@ The buying and selling pressure as time moves indicates the level of interest wi
 This change of interest is directly translated to a change in price. 
 The orderbook containing all this data should be capable of identifying the movement of the price as well as the price levels if prices were to move.
 
+     -The logistic regression with no thresholding model was seen to be more or less incapable of accurately predicting the return expected in one time step as the accuracy of the model returned a 0.54 accuracy value
+    
+    -The Linear Dense neural network model that was run afterwards included three classfication outputs 0,1,2 : sell, hold, buy. The model training showed a very high accuracy of 0.96 when run at 100 epochs which seemed to be overfitting the data, since the validation accuracy was onlt 0.7 . Possible solutions include lower epoch number for a less over-fit model.
+    
+    -Finally the last model attempted which is the model that was chosen to be the best performing was the LSTM neural network model that returned a validation score of 0.805 which was higher than the training score of 0.762, the model was run using a lower epoch number to prevent over-fitting and was consequently run on the test values
+   
+   -The final testing of the model returned an accuracy equal to that of the validation which is always a good sign to see. 
 
 # Other
 
 **Future improvement ideas:**
-
+More data manipulation
+Rearranging the data for other models (maybe some techincal representation of the values as a whole)
+Arima model/Sarimax model testing 
   
 **Sourcing:**
 
 Data source: https://www.kaiko.com/
-Data source: Coinbase Pro 
+Data source: Coinbase Pro API 
 
