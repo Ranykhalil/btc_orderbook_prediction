@@ -51,7 +51,14 @@ The timestamp is in unix format with a millisecond accuracy.
 Data preperation mainly revolved around the rebinning of data into price bins to emphasis the interest in high pressure price levels. Indicating a general market interest at that level.
 
 # Modelling
-Since the data was not in consistent time intervals modelling included running logistic and linear regressions to ask as baseline to whether the data could be looked at as discrete values rather than continuous.
+Since the data was not in consistent time intervals modelling included running logistic to ask as baseline to whether the data could be looked at as discrete values rather than continuous.
+
+-Dense Neural Network: A dense layered model yielded a validation accuracy of 0.7
+
+-Long Short Term Memory: Running the LSTM model yielded a validation accuracy of 0.8
+
+----Compare with graphs----
+
 
 # Evaluation
 
@@ -59,14 +66,14 @@ The buying and selling pressure as time moves indicates the level of interest wi
 This change of interest is directly translated to a change in price. 
 The orderbook containing all this data should be capable of identifying the movement of the price as well as the price levels if prices were to move.
 
+
 # Other
 
 **Future improvement ideas:**
-Combining orderbook data with actual executed orders could be considered 
-Creating bins within return values as a possible range identifier with a separate model.
+
   
 **Sourcing:**
 
 Data source: https://www.kaiko.com/
-
+Data source: Coinbase Pro 
 
