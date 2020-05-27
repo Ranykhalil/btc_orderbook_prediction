@@ -95,7 +95,7 @@ The buying and selling pressure as time moves indicates the level of interest wi
 This change of interest is directly translated to a change in price. 
 The orderbook containing all this data should be capable of identifying the movement of the price as well as the price levels if prices were to move.
 
-     -The logistic regression model was run without thresholding on a binary price change of either positive/negative. It was seen to be incapable of accurately predicting a one step forward price change as the accuracy of the model returned 0.54
+ -The logistic regression model was run without thresholding on a binary price change of either positive/negative. It was seen to be incapable of accurately predicting a one step forward price change as the accuracy of the model returned 0.54
     
 -The Linear Dense neural network model that was run afterwards included three classfication outputs 0,1,2 : sell, hold, buy. The model **training showed a very high accuracy of 0.96** when run at 100 epochs which seemed to be overfitting the data, since the **validation accuracy was 0.7** . Possible solutions include lower epoch number for a less over-fit model.
     
