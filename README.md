@@ -41,18 +41,12 @@ Using this data the prediction of the price movement can be monitored and predic
 ****
 # Data Understanding
 The structure of the dataframe is as follows:
-date	type	price	amount
 
-0	1567296016662	b	9600.85	0.058399
-
-1	1567296016662	b	9600.01	0.225000
-
-2	1567296016662	b	9600.00	0.104123
-
-3	1567296016662	b	9600.00	0.021774
-
-4	1567296016662	b	9600.00	1.000000
-
+|   | date          | type | price   | amount   |
+|---|---------------|------|---------|----------|
+| 0 | 1567296016662 | b    | 9600.85 | 0.058399 |
+| 1 | 1567296016662 | b    | 9600.01 | 0.225000 |
+| 2 | 1567296016662 | b    | 9600.00 | 0.104123 |
 
 The sample csv contains snapshots of the order book at different timestamps found within the column 'date'. The order is identified as either a bid or an ask within the 'type' column. The price and amount are also present in the remaining two columns.
 
@@ -89,12 +83,16 @@ The orderbook containing all this data should be capable of identifying the move
 # Other
 
 **Future improvement ideas:**
+
 More data manipulation
+
 Rearranging the data for other models (maybe some techincal representation of the values as a whole)
+
 Arima model/Sarimax model testing 
   
 **Sourcing:**
 
 Data source: https://www.kaiko.com/
+
 Data source: Coinbase Pro API 
 
